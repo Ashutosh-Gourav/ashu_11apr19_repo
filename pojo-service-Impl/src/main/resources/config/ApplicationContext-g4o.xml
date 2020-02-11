@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:annotation-config/>
+    <bean id="healthcheckApi" class="com.pojo.service.api.v1.healthcheck.HealthCheckApiApiImpl"/>
+    <bean id="userApi" class="com.pojo.service.api.v1.pojo.UserApiImpl"/>
+    <bean id ="loginApplication" class="com.pojo.service.application.LoginApplicationImpl"/>
+
+    <bean id="jsonProvider"
+          class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+    <bean id ="userDetailsRepository" class="com.pojo.service.infrastructure.UserDetailsRepositoryImpl"/>
+    <bean id="userRowMapper" class="com.pojo.service.infrastructure.UserRowMapper"/>
+    <bean id="poojaDetailsRowMapper" class="com.pojo.service.infrastructure.PoojaDetailsRowMapper"/>
+    <bean id="priestDetailsRowMapper" class="com.pojo.service.infrastructure.PriestDetailsRowMapper"/>
+    <bean id="poojaDetailsApi" class="com.pojo.service.api.v1.pojo.PoojaDetailsApiImpl"/>
+    <bean id="poojaDetailsApplication" class="com.pojo.service.application.PoojaDetailsApplicationImpl"/>
+    <bean id="poojaDetailsRepository" class="com.pojo.service.infrastructure.PoojaDetailsRepositoryImpl"/>
+    <bean id="bookingActionsRepository" class="com.pojo.service.infrastructure.BookingActionsRepositoryImpl"/>
+    <bean id="bookingDetailsRowMapper" class="com.pojo.service.infrastructure.BookingDetailsRowMapper"/>
+    <bean id="bookingActionsApi" class="com.pojo.service.api.v1.pojo.BookingActionsApiImpl"/>
+    <bean id="boolingActionsApplication" class="com.pojo.service.application.BookingActionsApplicationImpl"/>
+    <bean id="priestImageRowMapper" class="com.pojo.service.infrastructure.PriestImageRowMapper"/>
+    <bean id="userBookingHistoryRowMapper" class="com.pojo.service.infrastructure.UserBookingHistoryRowMapper"/>
+    <bean id="priestDetailsRepository" class="com.pojo.service.infrastructure.PriestDetailsRepositoryImpl"/>
+    <bean id="notificationApi" class="com.pojo.service.api.v1.pojo.NotificationApiImpl"/>
+    <bean id="notificationApplication" class="com.pojo.service.application.NotificationApplicationImpl"/>
+    <bean id="notificationRepository" class="com.pojo.service.infrastructure.NotificationRepositoryImpl"/>
+    <bean id="newUserBookingRowMapper" class="com.pojo.service.infrastructure.NewUserBookingRowMapper"/>
+    <bean id="panditManagerApi" class="com.pojo.service.api.v1.pojo.PanditManagerApiImpl"/>
+    <bean id="priestManagerApplication" class="com.pojo.service.application.PriestManagerApplicationImpl"/>
+    <bean id="priestManagerRepository" class="com.pojo.service.infrastructure.PriestManagerRepositoryImpl"/>
+    <bean id="fcmRegistrationInfoRowMapper" class="com.pojo.service.infrastructure.NotificationRowMapper"/>
+    <bean id="registeredUserBookingDetailsRowMapper" class="com.pojo.service.infrastructure.RegisteredUserBookingDetailsRowMapper"/>
+
+    <jaxrs:server id="pojoService" address="/api">
+        <jaxrs:serviceBeans>
+            <ref bean="healthcheckApi"/>
+            <ref bean="userApi"/>
+            <ref bean="poojaDetailsApi"/>
+            <ref bean="bookingActionsApi"/>
+            <ref bean="notificationApi"/>
+            <ref bean="panditManagerApi"/>
+        </jaxrs:serviceBeans>
+        <jaxrs:providers>
+            <ref bean="jsonProvider"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+</beans>
